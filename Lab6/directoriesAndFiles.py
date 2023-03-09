@@ -1,6 +1,6 @@
 import string
 import os
-
+os.chdir("Lab6")
 
 def test1(path):
     dirs,files,all=[],[],[]
@@ -11,7 +11,7 @@ def test1(path):
         for filename in filenames:
             files.append(os.path.join(dirpach,filename))
             all.append(os.path.join(dirpach,filename))
-    print(*dirs)    
+    print(*dirs)
     print("\n",*files)
     print("\n",*all)
 
@@ -48,9 +48,9 @@ def test7(path1,path2):
     with open(path2,"w") as file:
         file.write(text)
 
-def test8(file):
-    if os.path.exists(file):
-        os.remove(file)
+def test8(path):
+    if os.path.exists(path):
+        os.remove(path)
     else:
         print("No such file")
         
@@ -61,4 +61,4 @@ def test8(file):
 # test5("example.txt",[1,2,3,4,5])
 # test6()
 # test7("example.txt","example2.txt")
-test8(input())
+# test8("example.txt")
