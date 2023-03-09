@@ -40,7 +40,8 @@ def test6():
 
 def test7():
     text = input()
-    print(''.join(x.capitalize() or '_' for x in text.split('_')))
+    split=re.split("_",text)
+    print(split[0]+"".join(x.title() for x in split[1::]))
 
 def test8():
     text = input()
