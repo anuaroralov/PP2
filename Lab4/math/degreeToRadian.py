@@ -1,2 +1,2 @@
 import math as m
-print(m.radians(float(input())))
+print((m.radians(float(input()))))
