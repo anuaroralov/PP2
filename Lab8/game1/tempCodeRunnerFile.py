@@ -1,0 +1,1 @@
+            pygame.mixer.Sound('coin.wav').play()
