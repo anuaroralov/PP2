@@ -59,10 +59,20 @@ class Snake:
       # Check for collision with snake's own body
       for square in self.body:
             if self.head.x == square.x and self.head.y == square.y:
-                self.dead = True
+               screen.fill('red')
+               game_over = score_font.render("Game over", True, (0, 0, 0))
+               screen.blit(game_over, (W/2 - 80, W/2))
+               pygame.display.update()
+               pygame.time.delay(2000)
+               self.dead = True
             # Check for collision with the edges of the screen
             if self.head.x not in range(0, W) or self.head.y not in range(0, W):
-                self.dead = True
+               screen.fill('red')
+               game_over = score_font.render("Game over", True, (0, 0, 0))
+               screen.blit(game_over, (W/2 - 80, W/2))
+               pygame.display.update()
+               pygame.time.delay(2000)
+               self.dead = True
       
       # Restart the game if snake is dead
       if self.dead:
