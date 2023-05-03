@@ -2,7 +2,6 @@ import telebot
 import psycopg2
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-# Установить соединение с базой данных PostgreSQL
 conn = psycopg2.connect(
     database="postgres",
     user="postgres",
@@ -11,7 +10,6 @@ conn = psycopg2.connect(
     port="5432"
 )   
 
-# Создать таблицу "goals", если она не существует
 cursor = conn.cursor()
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS goals (
@@ -23,7 +21,6 @@ cursor.execute("""
 """)
 conn.commit()
 
-# Инициализировать бота
 bot = telebot.TeleBot("6122895026:AAFZAnME9ume_Qn3Dla6BODHT9w_XJ0a9iU")
 
 menu_commands = [
@@ -36,7 +33,6 @@ menu_commands = [
 ]
 bot.set_my_commands(menu_commands)
 
-# Обработчик команды /start
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     text = "Привет! Я бот-копилка. Я помогу тебе следить за твоими целями и сбережениями. Доступные команды: /help"
@@ -44,10 +40,8 @@ def send_welcome(message):
     
 @bot.message_handler(commands=['add_goal'])
 def add_goal(message):
-    # Запросить название цели
     bot.reply_to(message, "На что вы хотите накопить?")
 
-    # Регистрируем следующий обработчик на получение названия цели
     bot.register_next_step_handler(message, get_goal_name)
 
 
@@ -71,7 +65,6 @@ def get_goal_limit(message, name):
     
     bot.reply_to(message, "Цель успешно добавлена!")
 
-# Обработчик команды /add_savings
 @bot.message_handler(commands=['add_savings'])
 def add_savings(message):
     # Запросить название цели
@@ -160,5 +153,4 @@ def help_command(message):
     text += "/help - список доступных команд\n"
     bot.reply_to(message, text)
 
-# Запустить бота
 bot.polling()
